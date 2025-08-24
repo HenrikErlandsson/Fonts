@@ -13,6 +13,7 @@ to save Chipmem, and replaces Topaz 8 for some coding environments which do not
 easily support loading a system font. Even if one of the other two alternatives
 are used in the game, this can be used to increase Chipmem, and also to print 
 loading messages in CLI using the same font as in-game.
+* GameStoryBoot, a bootblock that replaces the ASCII characters of the default Topaz font.
 
 (c) Henrik Erlandsson
 License: CC0 1.0 Universal
