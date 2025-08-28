@@ -10,8 +10,8 @@ This repo was inspired by [this thread on EAB](https://eab.abime.net/showthread.
 # Example
 International font supporting ANSI characters.
 
-Lores
+### Lores
 <img width="720" height="568" alt="223" src="https://github.com/user-attachments/assets/72db1c94-0ec8-4bd8-9aac-919ffa561ade" />
 
-Hires
+### Hires
 <img width="720" height="568" alt="225" src="https://github.com/user-attachments/assets/1aecca9c-a40d-450b-b7c2-c21093948c62" />
