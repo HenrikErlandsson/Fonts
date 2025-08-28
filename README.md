@@ -2,7 +2,7 @@
 Fonts I draw are placed here to be available for everyone.
 
 # Tools
-Some or all fonts include CLI/Shell/script tools to set them external of programs created using an environment that requires diskfont.library.
+Some or all fonts include CLI/Shell/script tools to set them external of programs created using an environment that otherwise requires the distribution of copyrighted diskfont.library/SetFont files from a WB disk with your release.
 
 # Blitz
 This repo was created specifically for AmiGameJam2025, and inspired by [this thread on EAB](https://eab.abime.net/showthread.php?t=112250&page=5), and for Blitz specifically there's now thanks to Honitos [AmiBlitz](https://github.com/AmiBlitz/AmiBlitz3/tree/develop) a plugin that will let you include any fonts, not just the ones I put here!
