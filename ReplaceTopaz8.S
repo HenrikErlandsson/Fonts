@@ -7,6 +7,7 @@
 	*-----------------------------------------------+
 	; by Photon of Scoopex © 2025 Henrik Erlandsson	|
 	*=========#=====================================#
+	; V0.20:  | Unpatch for 1.3			|
 	; V0.19:  | Opti 3				|
 	; V0.18:  | Opti 2				|
 	; V0.17:  | Opti				|
@@ -48,6 +49,8 @@ B:
 	MAK_INIT 34,"Error/Not specified an 8x8 font!"
 	MAK_OPENLIBS dos
 	MAK_IO
+	moveq #0,d6
+	move.l d6,d5
 	MAK_GETPARAMS MAK_ParamP-R(A5),1
 	beq.w Not8x8
 
@@ -149,7 +152,9 @@ CopySystemChars:			;d7,a1=192*8,allocP(dst),a6=execbase
 
 
 CopyFontChars:		;d0/a1-a4=modulo,dst(allocP),textfont,src(chardataP)
-	MOVEM.L A3-A4,-(SP)
+	MOVEM.L D4/A3-A4,-(SP)
+	moveq #-36,d4
+	add.w 20(a6),d4			;d4 < 0 if KS < 2.0
 
     *--- Get start/stop char ---*
 
@@ -164,12 +169,18 @@ CopyFontChars:		;d0/a1-a4=modulo,dst(allocP),textfont,src(chardataP)
 
 .charl:
 	move.l a4,a0
+	tst.w d4
+	bmi.s .LS20
 	cmp.w #$ac,d2			;ignore weird duplicated char
 	beq.s .adv
+.LS20:
 	cmp.w #$80,d2
 	blo.s .noskip
 	cmp.w #$a0,d2
 	blo.s .skipchar
+	tst.w d4
+	bmi.s .noadv
+	cmp.w #$a0,d2
 	bne.s .noadv
 .adv:
 	addq.w #1,a4			;ignore char in font file and advance
@@ -199,7 +210,7 @@ CopyFontChars:		;d0/a1-a4=modulo,dst(allocP),textfont,src(chardataP)
 	addq.w #1,d2			;increase char counter
 	bra.s .charl
 .done:
-	MOVEM.L (SP)+,A3-A4
+	MOVEM.L (SP)+,D4/A3-A4
 	RTS
 
 ********************  DATA  ********************
